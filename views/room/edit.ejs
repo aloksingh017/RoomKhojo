@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') -%>
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <h1>Edit Room</h1>
+            <a class="btn btn-info mb-2" href="/rooms/<%=room._id%>">GO BACK</a>
+            <form action="/rooms/<%=room._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label  class="form-label" for="ownerName">ownerName:</label>
+                    <input  class="form-control" type="text" id="ownerName" name="room[ownerName]" required value="<%=room.ownerName%>">
+                    <div class="valid-feedback">Looks Good</div>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label" for="ownerAddress">ownerAddress:</label>
+                    <input  class="form-control" type="text" id="ownerAddress" name="room[ownerAddress]" required value="<%=room.ownerAddress%>">    
+                    <div class="valid-feedback">Looks Good</div>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label" for="ownerPhone">ownerPhone:</label>
+                    <input  class="form-control" type="text" id="ownerPhone" name="room[ownerPhone]" required value="<%=room.ownerPhone%>">
+                    <div class="valid-feedback">Looks Good</div>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label" for="ownerImage">ownerImage</label>
+                    <input  class="form-control" type="text" id="ownerImage" name="room[ownerImage]" required value="<%=room.ownerImage%>">
+                    <div class="valid-feedback">Looks Good</div>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label" for="roomImage">Add More Room Image:</label>
+                    <input class="form-control" type="file" name="roomImage" id="roomImage" value="roomImage" multiple>
+                </div>
+               <div class="mb-2">
+                <% room.roomImage.forEach(function(img,i){%> 
+                    <img src="<%=img.url%>" class="img-thumbnail" alt="">                   
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="roomImage-i" name="deleteRoomImage[]" value="<%= img.filename %> ">
+                    </div>
+                     <label for="roomImage-i">Delete?</label>
+                    <% })  %>
+              </div>                  
+              
+                <div class="mb-3">
+                    <label  class="form-label" for="seater">seater:</label>
+                    <input  class="form-control" type="text" id="seater" name="room[seater]" required value="<%=room.seater%>">
+                    <div class="valid-feedback">Looks Good</div>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label" for="price">price:</label>
+                    <input  class="form-control" type="text" id="price" name="room[price]" required value="<%=room.price%>">
+                    <div class="valid-feedback">Looks Good</div>
+                </div>
+                <button class="btn btn-success mt-2">UPDATE ROOM</button>
+            </form>
+        </div>
+    </div>
